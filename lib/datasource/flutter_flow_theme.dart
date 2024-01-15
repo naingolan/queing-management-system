@@ -218,10 +218,10 @@ Widget customLabelText(BuildContext context, labelText) {
     child: Text(
       labelText,
       style: FlutterFlowTheme.of(context).title2.override(
-        fontFamily: 'Ubuntu',
-        color: FlutterFlowTheme.of(context).textColor,
-        fontSize: 16,
-        fontWeight: FontWeight.normal,
+        fontFamily: 'Inter',
+        color: FlutterFlowTheme.of(context).titleColor,
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
       ),
     ),
   );
@@ -232,23 +232,28 @@ Widget customTextField(BuildContext context,
   return RelativeBuilder(
       builder: (context, height, width, sy, sx) {
         return Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               SizedBox(
-                height: 5,
+                height: 2,
               ),
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: FlutterFlowTheme.of(context).shadowColor ,
-                      blurRadius: 1,
-                      offset: const Offset(0, 1),
-                    ),
-                  ],
+                  borderRadius: BorderRadius.circular(10),
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: FlutterFlowTheme.of(context).shadowColor ,
+                  //     blurRadius: 1,
+                  //     offset: const Offset(0, 1),
+                  //   ),
+                  // ],
+                  border: Border.all(
+                    color: Color(0XFFE4E7EB), // Set your desired border color here
+                    width: 2, // Set the border width
+                  ),
                 ),
                 child: TextField(
                   controller: controller,
@@ -257,7 +262,7 @@ Widget customTextField(BuildContext context,
                   decoration: InputDecoration(
                     hintText: hintText,
                     hintStyle: FlutterFlowTheme.of(context).bodyText2.override(
-                      fontFamily: 'Ubuntu',
+                      fontFamily: 'Inter',
                       color: FlutterFlowTheme.of(context).hintColor,
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
@@ -267,28 +272,28 @@ Widget customTextField(BuildContext context,
                         color: Colors.transparent,
                         width: 0,
                       ),
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     border: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 0,
                       ),
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 0,
                       ),
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 0,
                       ),
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     filled: true,
                     fillColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -505,14 +510,18 @@ Widget customPasswordField(BuildContext context,
         ),
         Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: [
-              BoxShadow(
-                color: FlutterFlowTheme.of(context).shadowColor,
-                blurRadius: 1,
-                offset: const Offset(0, 1),
-              ),
-            ],
+            borderRadius: BorderRadius.circular(10),
+            // boxShadow: [
+            //   BoxShadow(
+            //     color: FlutterFlowTheme.of(context).shadowColor,
+            //     blurRadius: 1,
+            //     offset: const Offset(0, 1),
+            //   ),
+            // ],
+            border: Border.all(
+              color: Color(0XFFE4E7EB), // Set your desired border color here
+              width: 2, // Set the border width
+            ),
           ),
           child: TextField(
             controller: controller,
@@ -521,7 +530,7 @@ Widget customPasswordField(BuildContext context,
             decoration: InputDecoration(
                 hintText: hintText,
                 hintStyle: TextStyle(
-                  fontFamily: 'Ubuntu',
+                  fontFamily: 'Inter',
                   color: Color(0xFF7D7D7D),
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
@@ -531,28 +540,28 @@ Widget customPasswordField(BuildContext context,
                     color: Colors.transparent,
                     width: 0,
                   ),
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 0,
                   ),
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 0,
                   ),
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 0,
                   ),
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 filled: true,
                 fillColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -560,7 +569,7 @@ Widget customPasswordField(BuildContext context,
                 suffixIcon: suffixIcon
             ),
             style: FlutterFlowTheme.of(context).bodyText2.override(
-              fontFamily: 'Ubuntu',
+              fontFamily: 'Inter',
               color: FlutterFlowTheme.of(context).textColor,
               fontSize: 16,
               fontWeight: FontWeight.normal,

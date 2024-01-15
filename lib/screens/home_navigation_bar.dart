@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:queuing_management_system/screens/profile.dart';
+import 'package:queuing_management_system/screens/queues.dart';
 import '../datasource/flutter_flow_theme.dart';
 import '../datasource/utils.dart';
 import 'home.dart';
@@ -146,12 +147,13 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
   Widget _getWidget() {
     switch (_curIndex) {
       case 0:
-        return ProfileScreen();
+        return QueuesScreen();
       case 1:
-        // return QRViewExample();
         return HomeScreen();
-      default:
+      case 2:
         return ProfileScreen();
+      default:
+        return HomeScreen();
     }
   }
 }

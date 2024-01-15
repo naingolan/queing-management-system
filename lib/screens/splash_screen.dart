@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:queuing_management_system/screens/home_navigation_bar.dart';
+import 'package:queuing_management_system/screens/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../datasource/flutter_flow_theme.dart';
 
@@ -60,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Timer(
           Duration(seconds: 1),
               () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => HomeNavigationBar())));
+              MaterialPageRoute(builder: (context) => LoginScreen())));
 
       // if (logged_in == true) {
       //   Timer(

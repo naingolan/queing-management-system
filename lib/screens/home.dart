@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:queuing_management_system/screens/notifications.dart';
 import 'package:relative_scale/relative_scale.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -172,7 +173,11 @@ _glowanimation(){
                         children: [
                           InkWell(
                               onTap: () {
-
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>NotificationScreen()),
+                                );
                               },
                               child: Container(
                                   child: Row(
