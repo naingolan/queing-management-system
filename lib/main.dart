@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:queuing_management_system/screens/home.dart';
 import 'package:queuing_management_system/screens/home_navigation_bar.dart';
+import 'package:queuing_management_system/screens/splash_screen.dart';
 import 'datasource/flutter_flow_theme.dart';
 
 void main() async {
@@ -59,8 +60,7 @@ class _MyAppState extends State<MyApp> {
         darkTheme: ThemeData(brightness: Brightness.dark),
         themeMode: _themeMode,
 
-        //home: SplashScreen());
-        home: HomeNavigationBar()
+        home: SplashScreen()
 
     );
   }

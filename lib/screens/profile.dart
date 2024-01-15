@@ -607,6 +607,7 @@ class _HomeScreenState extends State<ProfileScreen> with SingleTickerProviderSta
                                                       Text(
                                                         '0768498799',
                                                         overflow: TextOverflow.ellipsis,
+
                                                         maxLines: 3,
                                                         style: FlutterFlowTheme.of(context).bodyText2.override(
                                                           fontFamily: 'Inter',
@@ -1125,6 +1126,86 @@ class _HomeScreenState extends State<ProfileScreen> with SingleTickerProviderSta
 
                       ),
 
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(25, 25, 0, 0),
+                              child: Text(
+                              'Logout',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context).bodyText2.override(
+                                  fontFamily: 'Inter',
+                                  color: FlutterFlowTheme.of(context).titleColor,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              )),
+                        ],
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>HomeScreen()),
+                          );
+
+                        },
+
+
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(25, 8, 25, 0),
+                          child: Container(
+                            // width: double.infinity,
+                              padding: EdgeInsets.only(left:10, top:10, bottom:20, right:10),
+                              margin: EdgeInsets.only(bottom:5),
+                              width: screenWidth,
+                              // height:sy(250),
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: FlutterFlowTheme.of(context).shadowColor,
+                                    blurRadius: 1,
+                                    offset: const Offset(0, 1),
+                                  ),
+                                ],
+                              ),
+                              alignment: Alignment.center,
+                              child:Container(
+                                width: double?.infinity,
+                                child:
+                                ElevatedButton(
+                                  child: Text(
+                                    "Logout",
+                                    style: FlutterFlowTheme.of(context).title2.override(
+                                      fontFamily: 'Inter',
+                                      color: Color(0xFFFFFFFF),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                  onPressed: (){},
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: FlutterFlowTheme.of(context).buttonColor,
+                                    foregroundColor:FlutterFlowTheme.of(context).buttonColor ,
+                                    textStyle: FlutterFlowTheme.of(context).title1.override(
+                                      fontFamily: 'Inter',
+                                      color: FlutterFlowTheme.of(context).buttonTextColor,
+                                      fontSize: 21,
+                                    ),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                  ),
+                                ),
+                              ),
+
+                          ),
+                        ),
+
+                      ),
 
 
                     ]),
