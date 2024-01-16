@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:queuing_management_system/screens/profile.dart';
 import 'package:queuing_management_system/screens/queues.dart';
+import '../datasource/firebase_background_handler.dart';
 import '../datasource/flutter_flow_theme.dart';
 import '../datasource/utils.dart';
 import 'home.dart';
@@ -15,14 +16,19 @@ class HomeNavigationBar extends StatefulWidget {
   // const HomeNavigationBar({Key? key}) : super(key: key);
   const HomeNavigationBar({
     Key? key,
+    this.responseData,
     this.notificationMessage,
     this.notificationTitle,
-    this.notificationData
+    this.notificationData,
+    this.onInitialOpen
+
   }) : super(key: key);
 
   final notificationMessage;
   final notificationTitle;
   final notificationData;
+  final onInitialOpen;
+  final responseData;
 
 
 
@@ -31,15 +37,49 @@ class HomeNavigationBar extends StatefulWidget {
 }
 
 class _HomeNavigationBarState extends State<HomeNavigationBar> {
+  FirebaseMessagingService messagingService = FirebaseMessagingService();
 
-  var notificatonMessage, notificationTitle, notificationData;
+
+  var notificationMessage;
+  var notificationTitle;
+  var notificationData;
+  var onInitialOpen;
+  var responseData;
+
   int _curIndex = 1;
   var _lang = "";
 
 
 
+  subscribeId()async{
+        print("I have entered tis one which i subscribe both Id and it model phone");
+
+        await FirebaseMessagingService.subscribeToTopic("kelvinho");
+  }
 
 
+  startAFresh(){
+    print(responseData);
+    notificationMessage = widget.notificationMessage;
+    notificationTitle = widget.notificationTitle;
+    notificationData = widget.notificationData;
+    onInitialOpen = (widget.onInitialOpen!=null)?widget.onInitialOpen:true;
+    responseData = widget.responseData;
+
+    print(responseData);
+
+    initializeFirebase(onInitialOpen);
+
+
+  }
+
+
+
+
+  initializeFirebase(bool onInitialOpen)async{
+    FirebaseMessagingService.init(context,onInitialOpen);
+    print("I have been initialized from the home navigation bar");
+  }
 
 
   _logOut() {
@@ -49,6 +89,8 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
   @override
   void initState() {
     super.initState();
+    startAFresh();
+    subscribeId();
   }
 
 
@@ -149,7 +191,9 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
       case 0:
         return QueuesScreen();
       case 1:
-        return HomeScreen();
+        return HomeScreen(
+          responseData: responseData
+        );
       case 2:
         return ProfileScreen();
       default:

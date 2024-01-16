@@ -17,8 +17,12 @@ import 'home_navigation_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key,
+    this.responseData
   })
       : super(key: key);
+
+  final responseData;
+
 
 
   @override
@@ -27,7 +31,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
 
-
+  var responseData;
   late AnimationController _animationController;
   late Animation _animation;
   var _lang = "";
@@ -36,21 +40,18 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   late bool _isAdmin;
   bool? _isDemo;
   var invites, single, double, scanned;
-  var eventName;
+  var queues;
 
+  startAfresh(){
+    setState(() {
+      responseData = widget.responseData;
+      var data = responseData["data"];
+      print("Response data at home $data");
+    });
 
-  receiveBackgroundMessage(RemoteMessage message) async {
-
-
-    // var notificationTitle = message.notification?.title;
-    // SharedPreferences sharedPreferences = await SharedPreferences
-    //     .getInstance();
-    // lang = sharedPreferences.getString("lang");
-    // var deviceId = message.data['new_device_id'];
-    // print(deviceId);
-    // var notificationMessage = message?.notification?.body;
 
   }
+
 
 
 _glowanimation(){
@@ -76,15 +77,7 @@ _glowanimation(){
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     setState(() {
-    invites = json.decode(sharedPreferences.getString("invites")!);
-    eventName = json.decode(sharedPreferences.getString("eventName")!);
-    print(invites);
-    single = invites.where((invite) => invite['cardType'] == 'single' || invite['cardType'] == 'Single').toList();
-    double = invites.where((invite) => invite['cardType'] == 'double' || invite['cardType'] == 'Double').toList() ;
-    scanned = invites.where((invite)=>invite['scanStatus'] == true).toList();
-    // print(single.length);
-      _lang = userLang;
-      print(eventName);
+
     });
   }
 
@@ -93,7 +86,8 @@ _glowanimation(){
 
   @override
   void initState(){
-     this.fetchRecent();
+     startAfresh();
+
     _glowanimation();
      super.initState();
   }

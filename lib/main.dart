@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'dart:io';
@@ -6,12 +7,14 @@ import 'package:queuing_management_system/screens/home.dart';
 import 'package:queuing_management_system/screens/home_navigation_bar.dart';
 import 'package:queuing_management_system/screens/splash_screen.dart';
 import 'datasource/flutter_flow_theme.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
 
   HttpOverrides.global = MyHttpOverrides();

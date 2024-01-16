@@ -77,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
   @override
   void initState() {
     super.initState();
-    isLoggedIn();
+    // isLoggedIn();
     passwordVisibility = false;
     _animationFunction();
   }
@@ -108,7 +108,8 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
           });
         }
         _enableLoading(_loading);
-        var urlApi = "http://170.64.184.232/login"; //get from constant
+        var baseUrl = Utils.getBaseUrl();
+        var urlApi = "http://192.168.100.23:3000/login"; //get from constant
         print(urlApi);
         SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
         try {
@@ -130,7 +131,9 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
             print("after shared");
             _enableLoading(_loading);
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => HomeNavigationBar()));
+                MaterialPageRoute(builder: (context) => HomeNavigationBar(
+                    responseData :responseData
+                )));
             submitPressed = false;
           }
           else {
@@ -387,9 +390,9 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                                               overlayColor: MaterialStateProperty.all(Colors.transparent),
                                             ),
                                             onPressed: () {
-                                              // _checkInternetConnection();
-                                              Navigator.push(context,
-                                                  MaterialPageRoute(builder: (context) => HomeNavigationBar()));
+                                              _checkInternetConnection();
+                                              // Navigator.push(context,
+                                              //     MaterialPageRoute(builder: (context) => HomeNavigationBar()));
                                             },
                                             child: Text(
                                               'Sign In',

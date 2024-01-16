@@ -7,6 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Utils {
+
+
   static colorReturn(){
     // Color transparent = image.Color(0x00000000);
     // return transparent;
@@ -30,15 +32,44 @@ class Utils {
   }
 
   static  showSnackBar(context, msg) {
-    // showTopSnackBar(
-    //     Overlay.of(context),
-    //     CustomSnackBar.info(
-    //         message: msg,
-    //         backgroundColor: FlutterFlowTheme.of(context).buttonColor,
-    //         textStyle: FlutterFlowTheme.of(context).bodyText2
-    //     )
-    // );
+
+    FToast fToast = FToast();
+    fToast.init(context);
+
+
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: Colors.redAccent,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.clear),
+          SizedBox(
+            width: 12.0,
+          ),
+          Text(msg),
+        ],
+      ),
+    );
+
+
+    // Custom Toast Position
+    fToast.showToast(
+        child: toast,
+        toastDuration: Duration(seconds: 2),
+        positionedToastBuilder: (context, child) {
+          return Positioned(
+            child: child,
+            bottom: 16.0,
+             left:  MediaQuery.of(context).size.width *0.2,
+          );
+        });
+
   }
+
 
 
   static bool validPhone(phone) {
@@ -68,9 +99,9 @@ class Utils {
     var demoEnv = sharedPreferences.getBool("demoEnv");
     var baseUrl = "";
     if (demoEnv == true) {
-      baseUrl = "http://170.64.184.232/";
+      baseUrl = "http://192.168.100.23/";
     } else {
-      baseUrl = 'http://170.64.184.232/';
+      baseUrl = 'http://192.168.100.23/';
     }
     return baseUrl;
   }
@@ -103,17 +134,7 @@ class Utils {
   static setLoginDataShared(responseData, password) async {
     print(responseData['data']);
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setString("invites",jsonEncode(responseData["data"]));
-    (responseData["eventId"])??sharedPreferences.setString("eventId", responseData["eventId"]);
-    // // (responseData["eventUrl"])??sharedPreferences.setString("eventUrl", responseData["eventUrl"]);
-    print(responseData["eventName"]);
-    sharedPreferences.setString("eventName", jsonEncode(responseData["eventName"]));
-    sharedPreferences.setString("deleteConfirmation", "4321");
-    if(responseData["eventCardUrl"]!=null) {
-      print("I can save");
-      sharedPreferences.setString("eventUrl", responseData["eventCardUrl"]);
-    }
-
+    sharedPreferences.setString("queues",jsonEncode(responseData["data"]));
   }
 
   static setNewInviteDataShared(responseData)async{
@@ -126,7 +147,7 @@ class Utils {
   static loginUser(
       String username, String password, String lang,  loginUrl) async {
     http.Response response = await http.post(Uri.parse(loginUrl),
-        body: {"phone": username, "password": password, "lang": lang, });
+        body: {"email": username, "password": password, "lang": lang, });
     var responseData = json.decode(response.body);
     return responseData;
   }
@@ -134,7 +155,7 @@ class Utils {
   static loginUserNewOne(
       String username, String password, String loginUrl)async{
     http.Response response = await http.post(Uri.parse(loginUrl),
-        body: {"phoneNumber": username, "password": password});
+        body: {"email": username, "password": password});
     var responseData = json.decode(response.body);
     return responseData;
   }
