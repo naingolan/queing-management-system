@@ -178,7 +178,7 @@ _glowanimation(){
                                     children: [
                                       Padding(
                                           padding: const EdgeInsets.only(
-                                              right: 4),
+                                              right: 6),
                                           child: Container(
                                               child: Icon(Icons.notifications_none, color:Color(0xFFFFFFFF)))
                                       )
